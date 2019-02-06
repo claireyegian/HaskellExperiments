@@ -153,6 +153,5 @@ allRigids n = [x | x <- [1..n], isRigid x]
   Prelude> fizzBuzz 10 2 3
   ["1","Fizz","Buzz","4","5","FizzBuzz","7","Fizz","Buzz","10"]
 -}
---fizzBuzz n f b = [if (x `mod` f == 0) || (x `mod` b == 0) then if x `mod` b == 0 then "FizzBuzz" else "Fizz" else show x | x <- [1..n]]
-fizzBuzz n f b = [if (x `mod` f == 0) || (x `mod` b == 0) then if x `mod` f == 0 then if x `mod` b == 0 then "FizzBuzz" else "Fizz" else "Buzz" else show x | x <- [1..n]]
 
+fizzBuzz n f b = [if (x `mod` f == 0) || (x `mod` b == 0) then if x `mod` f == 0 then if x `mod` b == 0 then "FizzBuzz" else "Fizz" else "Buzz" else show x | x <- [1..n]]
