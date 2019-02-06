@@ -58,7 +58,7 @@ allThousands = [1000..9999]
   [6,5,4,3,2,3,4,5,6,7,8,9,10]
 -}
 
---integersUpDownUp a b c d = -- put your code here
+integersUpDownUp a b c d = (allIntegersInclusive a b) ++ (allIntegersExcludingFirst b c) ++ (allIntegersExcludingFirst c d)
 
 {-
   Create a function called isDivisor that accepts two integers n and d and
@@ -71,7 +71,7 @@ allThousands = [1000..9999]
   False
 -}
 
---isDivisor n d = -- put your code here
+isDivisor n d = n `mod` d==0
 
 {- 
   Create a function called divisors that accepts an integer, n, and returns
@@ -83,7 +83,7 @@ allThousands = [1000..9999]
   Hint: use a list comprehension.
 -}
 
---divisors n = -- put your code here
+divisors n = [x | x <- [1..n-1], isDivisor n x]
 
 {-
   Create a function called isPerfect that accepts an integer, n, and returns 
@@ -95,7 +95,7 @@ allThousands = [1000..9999]
   True
 -}
 
---isPerfect n = -- put your code here
+isPerfect n = sum (divisors n)==n
 
 {-
   Create a function called allPerfects that accepts an integer, n, and returns
@@ -105,7 +105,7 @@ allThousands = [1000..9999]
   [6,28]
 -}
 
---allPerfects n = -- put your code here
+allPerfects n = [x | x <- [1..n], isPerfect x]
 
 {-
   Create a function called isRigid that accepts an integer, n, and returns
@@ -129,7 +129,9 @@ allThousands = [1000..9999]
   of the problem.
 -}
 
---isRigid n = -- put your code here
+characterList n = [[x] | x <- (show n)]
+integerList n = [(read :: String -> Int) x | x <- characterList n]
+isRigid n = sum (integerList n) == product (integerList n)
 
 {-
   Create a function called allRigids that accepts an integer, n, and returns
@@ -139,7 +141,7 @@ allThousands = [1000..9999]
   [1,2,3,4,5,6,7,8,9,22,123,132,213,231,312,321]
 -}
 
---allRigids n = -- put your code here
+allRigids n = [x | x <- [1..n], isRigid x]
 
 {-
   Create a function called fizzBuzz that accepts integers n, f, and b. 
@@ -151,6 +153,6 @@ allThousands = [1000..9999]
   Prelude> fizzBuzz 10 2 3
   ["1","Fizz","Buzz","4","5","FizzBuzz","7","Fizz","Buzz","10"]
 -}
-
---fizzBuzz n f b = -- put your code here
+--fizzBuzz n f b = [if (x `mod` f == 0) || (x `mod` b == 0) then if x `mod` b == 0 then "FizzBuzz" else "Fizz" else show x | x <- [1..n]]
+fizzBuzz n f b = [if (x `mod` f == 0) || (x `mod` b == 0) then if x `mod` f == 0 then if x `mod` b == 0 then "FizzBuzz" else "Fizz" else "Buzz" else show x | x <- [1..n]]
 
